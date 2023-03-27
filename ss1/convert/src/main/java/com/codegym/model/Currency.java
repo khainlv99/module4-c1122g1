@@ -1,23 +1,23 @@
 package com.codegym.model;
 
 public class Currency {
-    private Double usa;
+    private Double usd;
     private Double vietNam;
 
     public Currency() {
     }
 
-    public Currency(Double usa, Double vietNam) {
-        this.usa = usa;
+    public Currency(Double usd, Double vietNam) {
+        this.usd = usd;
         this.vietNam = vietNam;
     }
 
-    public Double getusa() {
-        return usa;
+    public Double getusd() {
+        return usd;
     }
 
-    public void setusa(Double usa) {
-        this.usa = usa;
+    public void setusd(Double usd) {
+        this.usd = usd;
     }
 
     public Double getVietNam() {
@@ -27,7 +27,7 @@ public class Currency {
     @Override
     public String toString() {
         return "TienTe{" +
-                "usa=" + usa +
+                "usd=" + usd +
                 ", vietNam=" + vietNam +
                 '}';
     }
