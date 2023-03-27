@@ -18,10 +18,10 @@ public class HelloController {
     }
 
     @PostMapping("")
-    public static String user(@RequestParam(name = "ten") String ten,@RequestParam(name = "ten2") String ten2 ,Model model) {
+    public static String user(@RequestParam(name = "string1") String string1,@RequestParam(name = "string2") String string2 ,Model model) {
         String name1 = null;
         String name2 = null;
-        switch (ten){
+        switch (string1){
             case "Mot":
                 name1 = "One";
                 break;
@@ -32,7 +32,7 @@ public class HelloController {
                 name1 = "Three";
                 break;
         }
-        switch (ten2){
+        switch (string2){
             case "One":
                 name2 = "Một";
                 break;

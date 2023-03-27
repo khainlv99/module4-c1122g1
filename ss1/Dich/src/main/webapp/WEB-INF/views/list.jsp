@@ -14,9 +14,9 @@
 <form method="post">
     <h1>Hello Spring MVC</h1>
     <label for="">Việt sang anh: </label><br>
-    <input type="text" name="ten"><br>
+    <input type="text" name="string1"><br>
     <label>Anh sang việt: </label><br>
-    <input type="text" name="ten2"><br>
+    <input type="text" name="string2"><br>
     <input type="submit">
 </form>
 <h1>${name}</h1><br>
