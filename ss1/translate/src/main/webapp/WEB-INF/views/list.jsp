@@ -14,12 +14,12 @@
 <form method="post">
     <h1>Hello Spring MVC</h1>
     <label for="">Việt sang anh: </label><br>
-    <input type="text" name="string1"><br>
-    <label>Anh sang việt: </label><br>
-    <input type="text" name="string2"><br>
+    <input type="text" name="english"><br>
+<%--    <label>Anh sang việt: </label><br>--%>
+<%--    <input type="text" name="string2"><br>--%>
     <input type="submit">
 </form>
 <h1>${result}</h1><br>
-<h1>${name2}</h1>
+<%--<h1>${name2}</h1>--%>
 </body>
 </html>

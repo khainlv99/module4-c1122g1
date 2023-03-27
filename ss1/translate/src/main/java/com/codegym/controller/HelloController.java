@@ -21,7 +21,7 @@ public class HelloController {
     }
 
     @PostMapping("")
-    public String user(@RequestParam(name = "string1") String string1,@RequestParam(name = "string2") String string2 ,Model model) {
+    public String user(@RequestParam(name = "english") String english ,Model model) {
 //        String name1 = null;
 //        String name2 = null;
 //        switch (string1){
@@ -50,7 +50,7 @@ public class HelloController {
 //        model.addAttribute("name2", name2);
 //        return "list";
 
-        model.addAttribute("result", iTranslateService.translate(string1));
+        model.addAttribute("result", iTranslateService.translate(english));
         return "list";
     }
 }
