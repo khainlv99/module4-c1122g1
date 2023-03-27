@@ -19,7 +19,7 @@
     <input type="text" name="string2"><br>
     <input type="submit">
 </form>
-<h1>${name}</h1><br>
+<h1>${result}</h1><br>
 <h1>${name2}</h1>
 </body>
 </html>

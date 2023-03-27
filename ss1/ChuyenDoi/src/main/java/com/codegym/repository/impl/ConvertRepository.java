@@ -1,4 +1,6 @@
-package com.codegym.repository;
+package com.codegym.repository.impl;
+
+import com.codegym.repository.IConvertRepository;
 
 public class ConvertRepository implements IConvertRepository {
 
