@@ -13,10 +13,9 @@
 <body>
 <form action="student/result">
 <h1>Hello Spring MVC</h1>
-<input type="text" name="doLa">
+<input type="text" name="usa">
 <input type="submit">
 </form>
-
-<h1>${doLa}</h1>
+<h1>${usa1}</h1>
 </body>
 </html>

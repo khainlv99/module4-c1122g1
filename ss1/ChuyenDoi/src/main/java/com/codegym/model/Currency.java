@@ -1,23 +1,23 @@
 package com.codegym.model;
 
-public class TienTe {
-    private Double doLa;
+public class Currency {
+    private Double usa;
     private Double vietNam;
 
-    public TienTe() {
+    public Currency() {
     }
 
-    public TienTe(Double doLa, Double vietNam) {
-        this.doLa = doLa;
+    public Currency(Double usa, Double vietNam) {
+        this.usa = usa;
         this.vietNam = vietNam;
     }
 
-    public Double getDoLa() {
-        return doLa;
+    public Double getusa() {
+        return usa;
     }
 
-    public void setDoLa(Double doLa) {
-        this.doLa = doLa;
+    public void setusa(Double usa) {
+        this.usa = usa;
     }
 
     public Double getVietNam() {
@@ -27,7 +27,7 @@ public class TienTe {
     @Override
     public String toString() {
         return "TienTe{" +
-                "doLa=" + doLa +
+                "usa=" + usa +
                 ", vietNam=" + vietNam +
                 '}';
     }
