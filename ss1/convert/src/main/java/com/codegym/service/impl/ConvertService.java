@@ -5,9 +5,9 @@ import com.codegym.repository.IConvertRepository;
 import com.codegym.service.IConvertService;
 
 public class ConvertService implements IConvertService {
-    private IConvertRepository iConvertRepository = new ConvertRepository();
     @Override
-    public double convert(double usa) {
-        return iConvertRepository.convert(usa);
+    public double convert(double usd) {
+        double vietNam = usd * 23521;
+        return vietNam;
     }
 }

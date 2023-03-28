@@ -4,9 +4,9 @@ import com.codegym.repository.IConvertRepository;
 
 public class ConvertRepository implements IConvertRepository {
 
-    @Override
-    public double convert(double usa) {
-        double vietNam = usa * 23521;
-        return vietNam;
-    }
+//    @Override
+//    public double convert(double usa) {
+//        double vietNam = usa * 23521;
+//        return vietNam;
+//    }
 }
