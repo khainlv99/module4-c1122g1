@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("student")
-public class HelloController {
+public class TranslateController {
     private ITranslateService iTranslateService = new TranslateService();
 
 
@@ -22,34 +22,6 @@ public class HelloController {
 
     @PostMapping("")
     public String user(@RequestParam(name = "english") String english ,Model model) {
-//        String name1 = null;
-//        String name2 = null;
-//        switch (string1){
-//            case "Mot":
-//                name1 = "One";
-//                break;
-//            case "Hai":
-//                name1 = "Two";
-//                break;
-//            case "Ba":
-//                name1 = "Three";
-//                break;
-//        }
-//        switch (string2){
-//            case "One":
-//                name2 = "Một";
-//                break;
-//            case "Two":
-//                name2 = "Hai";
-//                break;
-//            case "Three":
-//                name2 = "Ba";
-//                break;
-//        }
-//        model.addAttribute("name", name1);
-//        model.addAttribute("name2", name2);
-//        return "list";
-
         model.addAttribute("result", iTranslateService.translate(english));
         return "list";
     }
