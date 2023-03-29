@@ -1,5 +1,7 @@
-package com.codegym;
+package com.codegym.cotroller;
 
+import com.codegym.service.ICaculatorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("index")
 public class Caculator {
+
+    private final ICaculatorService iCaculatorService;
+
+    public Caculator(ICaculatorService iCaculatorService) {
+        this.iCaculatorService = iCaculatorService;
+    }
 
     @GetMapping
     public String showCaculator(){
@@ -22,26 +30,7 @@ public class Caculator {
             @RequestParam (name ="calculate") String calculate,
             Model model
     ){
-        double result = 0.0;
-        switch (calculate){
-            case "Addition(+)":
-                result = numberOne + numberTwo;
-                break;
-            case "Subtraction(-)":
-                result = numberOne - numberTwo;
-                break;
-            case "Multiplication(X)":
-                result = numberOne * numberTwo;
-                break;
-            case "Division(/)":
-                if (numberTwo == 0){
-                    model.addAttribute("msg","Không thể chia cho 0");
-                    break;
-                }
-                result = numberOne / numberTwo;
-                break;
-        }
-        model.addAttribute("result", result);
+        model.addAttribute("result", iCaculatorService.caculator(calculate,numberOne,numberTwo));
         return "list";
     }
 }

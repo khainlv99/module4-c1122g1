@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +10,6 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<input type="checkbox" >
-<label for="">Lettuce</label>
-<input type="checkbox">
-<label for="">Tomato</label>
-<input type="checkbox">
-<label for="">Mustard</label>
-<input type="checkbox">
-<label for="">Sprouts</label>
+<c:redirect url="/sandwich"> </c:redirect>
 </body>
 </html>

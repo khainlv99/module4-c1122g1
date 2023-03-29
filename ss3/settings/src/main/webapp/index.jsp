@@ -10,6 +10,6 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<c:redirect url="/index"></c:redirect>
+<c:redirect url="index/create"></c:redirect>
 </body>
 </html>
