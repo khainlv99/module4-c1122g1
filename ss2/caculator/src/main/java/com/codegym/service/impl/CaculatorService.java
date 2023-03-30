@@ -1,9 +1,10 @@
-package com.codegym.service;
+package com.codegym.service.impl;
 
+import com.codegym.service.ICaculatorService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CaculatorService implements ICaculatorService{
+public class CaculatorService implements ICaculatorService {
     @Override
     public double caculator(String calculate,double numberOne, double numberTwo) {
         double result = 0.0;
