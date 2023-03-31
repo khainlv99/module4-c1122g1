@@ -12,24 +12,24 @@
 <body>
 <div class="container">
 <div id="form">
-    <form th:action="@{/product/update}" th:object="${product}"
+    <form th:action="@{/product/detail}" th:object="${list}"
           method="post" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
-            <label>Name</label>
-            <input type="text" th:field="*{name}"/>
+            <label>Name: </label>
+            <p th:text="*{name}"></p>
         </div>
         <div>
-            <label>Price</label>
-            <input type="text" th:field="*{price}"/>
+            <label>Piece: </label>
+            <p th:text="*{price}"></p>
         </div>
         <div>
-            <label>Type</label>
-            <input type="text" th:field="*{type}"/>
+            <label>Type: </label>
+            <p th:text="*{type}"></p>
         </div>
         <div>
-            <label>Producer</label>
-            <input type="text" th:field="*{producer}"/>
+            <label>Producer: </label>
+            <p th:text="*{producer}"></p>
         </div>
         <input type="submit" value="Edit"/>
     </form>

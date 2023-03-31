@@ -49,4 +49,10 @@ public class ProductController {
         iProductService.remote(id);
         return "redirect:/product";
     }
+    @GetMapping("detail/{id}")
+    public String showDetail(@PathVariable int id, Model model){
+        model.addAttribute("list", iProductService.findById(id));
+        return "/detail";
+    }
+
 }
