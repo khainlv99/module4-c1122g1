@@ -12,16 +12,21 @@ import java.util.List;
 @Repository
 public class ProductRepository implements IProductRepository {
 
-    static List<Product> productList = new ArrayList<>();
-    static {
-        productList.add(new Product(1, "Khai", 20.1, "Khai", "Khaideptrai"));
-        productList.add(new Product(2, "Khai1", 20.1, "Khai1", "Khaideptrai1"));
-        productList.add(new Product(3, "Khai2", 20.1, "Khai2", "Khaideptrai2"));
-        productList.add(new Product(4, "Khai3", 20.1, "Khai3", "Khaideptrai3"));
+    @Override
+    public List<Product> findAll() {
+        List<Product> productList = BaseRepository.entityManager.createQuery("select s from Product s", Product.class).getResultList();
+        return productList;
+    }
+
+    public void deleteByID(Integer id_product) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        BaseRepository.entityManager.createQuery("delete from Product where id = id_product", Product.class);
+        entityTransaction.commit();
     }
 
     @Override
-    public void save(Product product) {
+    public void create(Product product) {
         EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
         entityTransaction.begin();
         BaseRepository.entityManager.persist(product);
@@ -29,28 +34,19 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public List<Product> findAll() {
-        List<Product> products = BaseRepository.entityManager.createQuery("select p from Product p" ,Product.class).getResultList();
-        return products;
+    public Product findByID(Integer id) {
+        return BaseRepository.entityManager.find(Product.class, id);
     }
 
     @Override
-    public Product findById(int id) {
-        Product product = BaseRepository.entityManager.createQuery("SELECT c FROM Product AS c WHERE c.id = :id",Product.class).setParameter("id",id).getSingleResult();
-        return product;
+    public List<Product> searchByName(String name) {
+        List<Product> productList = BaseRepository.entityManager.createQuery("select s from Product s where name_product like '%" + name + "%' ", Product.class).getResultList();
+        return productList;
     }
 
     @Override
-    public void update(int id, Product product) {
-        for (Product pro : productList) {
-            if(pro.getId() == id){
-                productList.set(productList.indexOf(pro),product);
-            }
-        }
+    public void edit(Product product) {
+
     }
 
-    @Override
-    public void remote(int id) {
-        productList.remove(findById(id));
-    }
 }

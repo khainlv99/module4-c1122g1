@@ -6,8 +6,14 @@ import java.util.List;
 
 public interface IProductService {
     List<Product> findAll();
-    void save(Product product);
-    void update(int id, Product product);
-    Product findById(int id);
-    void remote(int id);
+
+    void deleteByID(Integer id);
+
+    void create(Product product);
+
+    Product findByID(Integer id);
+
+    List<Product> searchByName(String name);
+
+    void edit(Product product);
 }

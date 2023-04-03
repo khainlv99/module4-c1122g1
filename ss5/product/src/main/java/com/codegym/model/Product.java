@@ -13,25 +13,25 @@ public class Product {
     @Column(name = "price", columnDefinition = "DOUBLE")
     private Double price;
     @Column(name = "type")
-    private String type;
+    private String description;
     @Column(name = "producer")
     private String producer;
 
     public Product() {
     }
 
-    public Product(String name, Double price, String type, String producer) {
+    public Product(String name, Double price, String description, String producer) {
         this.name = name;
         this.price = price;
-        this.type = type;
+        this.description = description;
         this.producer = producer;
     }
 
-    public Product(Integer id, String name, Double price, String type, String producer) {
+    public Product(Integer id, String name, Double price, String description, String producer) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.type = type;
+        this.description = description;
         this.producer = producer;
     }
 
@@ -59,12 +59,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public String getdescription() {
+        return description;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setdescription(String description) {
+        this.description = description;
     }
 
     public String getProducer() {
@@ -81,7 +81,7 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
                 ", producer='" + producer + '\'' +
                 '}';
     }

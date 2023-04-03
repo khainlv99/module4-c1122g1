@@ -22,22 +22,28 @@ public class ProductServicce implements IProductService {
     }
 
     @Override
-    public void save(Product product) {
-        repository.save(product);
+    public void deleteByID(Integer id) {
+        repository.deleteByID(id);
     }
 
     @Override
-    public void update(int id, Product product) {
-        repository.update(id,product);
+    public void create(Product product) {
+        repository.create(product);
     }
 
     @Override
-    public Product findById(int id) {
-        return repository.findById(id);
+    public Product findByID(Integer id) {
+        return repository.findByID(id);
+    }
+
+
+    @Override
+    public List<Product> searchByName(String name) {
+        return repository.searchByName(name);
     }
 
     @Override
-    public void remote(int id) {
-        repository.remote(id);
+    public void edit(Product product) {
+        repository.edit(product);
     }
 }

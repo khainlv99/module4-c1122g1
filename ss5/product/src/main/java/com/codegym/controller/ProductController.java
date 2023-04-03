@@ -11,42 +11,59 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("product")
 public class ProductController {
-    private final IProductService iProductService;
+    final
+    IProductService iProductService;
 
     public ProductController(IProductService iProductService) {
         this.iProductService = iProductService;
     }
 
-    @GetMapping("")
-    public String showList(Model model){
-        model.addAttribute("list", iProductService.findAll());
-        return "/list";
+    @GetMapping("list")
+    public String displayList(Model model) {
+        model.addAttribute("listProduct", iProductService.findAll());
+        return "list";
     }
+
+    @PostMapping("delete")
+    public String deleteByIDs(@RequestParam("idProduct") int id) {
+        iProductService.deleteByID(id);
+        return "redirect:/product/list";
+    }
+
     @GetMapping("create")
-    public String showCreate(Model model){
-        model.addAttribute("list",new Product());
+    public String formCreate(Model model) {
+        model.addAttribute("product", new Product());
         return "/create";
     }
+
     @PostMapping("create")
-    public String create(Product product
-            ){
-        iProductService.save(product);
-        return "redirect:/product";
+    public String create(Product product) {
+        iProductService.create(product);
+        return "redirect:/product/list";
     }
-    @GetMapping("update/{id}")
-    public String showUpdate(@PathVariable int id, Model model){
-        model.addAttribute("product", iProductService.findById(id));
-        return "/update";
+
+    @GetMapping("detail/{id}")
+    public String search(@PathVariable String name, Model model) {
+        model.addAttribute("product", iProductService.searchByName(name));
+        return "/detail";
     }
-    @PostMapping("update")
-    public String update(Product product){
-        iProductService.update(product.getId(), product);
-        return "redirect:/product";
+
+    @GetMapping("search")
+    public String searchByName(@RequestParam("nameProduct") String name, Model model) {
+        model.addAttribute("listProduct", iProductService.searchByName(name));
+        return "/list";
     }
-    @GetMapping("delete/{id}")
-    public String showDelete(@PathVariable int id, Model model){
-        model.addAttribute("product", iProductService.findById(id));
-        iProductService.remote(id);
-        return "redirect:/product";
+
+    @PostMapping("edit")
+    public String edit(Product product) {
+        iProductService.edit(product);
+        return "redirect:/product/list";
     }
+
+    @GetMapping("edit/{id}")
+    public String showFormEdit(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("product", iProductService.findByID(id));
+        return "/edit";
+    }
+
 }

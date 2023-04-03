@@ -32,7 +32,7 @@
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
-            <td th:text="${product.type}"></td>
+            <td th:text="${product.description}"></td>
             <td th:text="${product.producer}"></td>
             <td><a th:href="@{/product/update/{id}(id=${product.getId()})}">Update</a></td>
             <td><a th:href="@{/product/delete/{id}(id=${product.getId()})}">Delete</a></td>

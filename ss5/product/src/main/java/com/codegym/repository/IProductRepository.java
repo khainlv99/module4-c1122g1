@@ -6,9 +6,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface IProductRepository {
-    void save(Product product);
     List<Product> findAll();
-    Product findById(int id);
-    void update(int id, Product product);
-    void remote(int id);
+
+    void deleteByID(Integer id);
+
+    void create(Product product);
+
+    Product findByID(Integer id);
+
+    List<Product> searchByName(String name);
+
+    void edit(Product product);
 }
