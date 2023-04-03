@@ -33,13 +33,37 @@
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
-            <td th:text="${product.type}"></td>
+            <td th:text="${product.description}"></td>
             <td th:text="${product.producer}"></td>
             <td><a th:href="@{/product/update/{id}(id=${product.getId()})}">Update</a></td>
-            <td><a th:href="@{/product/delete/{id}(id=${product.getId()})}">Delete</a></td>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        th:attr="onclick=|upload('${product.id}','${product.name}')|">Delete
+                </button>
+            </td>
             <td><a th:href="@{/product/detail/{id}(id=${product.getId()})}">Detail</a></td>
         </tr>
     </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Confirm delete <span id="name"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/product/delete" method="post">
+                        <input type="hidden" id="idDelete" th:name="idProduct">
+                        <input type="submit" value="Delete" class="btn btn-secondary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

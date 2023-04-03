@@ -15,19 +15,19 @@
     <form th:action="@{/product/update}" th:object="${product}"
           method="post" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
-        <div>
+        <div class="col-2">
             <label>Name</label>
             <input type="text" th:field="*{name}"/>
         </div>
-        <div>
+        <div class="col-2">
             <label>Price</label>
             <input type="text" th:field="*{price}"/>
         </div>
-        <div>
+        <div class="col-2">
             <label>Type</label>
-            <input type="text" th:field="*{type}"/>
+            <input type="text" th:field="*{description}"/>
         </div>
-        <div>
+        <div class="col-2">
             <label>Producer</label>
             <input type="text" th:field="*{producer}"/>
         </div>
