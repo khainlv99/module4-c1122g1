@@ -39,4 +39,16 @@ public class BlogController {
         model.addAttribute("list",blogService.getStudentById(id));
         return "/update";
     }
+
+    @PostMapping("update")
+    public String update(Blog blog) {
+        blogService.save(blog);
+        return "redirect:/blog";
+    }
+
+    @GetMapping("detail/{id}")
+    public String detail(@PathVariable Integer id, Model model) {
+        model.addAttribute("list", blogService.getStudentById(id));
+        return "/detail";
+    }
 }
