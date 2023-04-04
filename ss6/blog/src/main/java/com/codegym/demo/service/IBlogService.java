@@ -10,4 +10,5 @@ public interface IBlogService {
     void save(Blog blog);
 
     Blog getStudentById(int id);
+    void delete(Integer id);
 }
