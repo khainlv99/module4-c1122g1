@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Category</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{themify-icons/themify-icons.css}">
+    <style>
+        th, td {
+            text-align: center;
+        }
+        .page-item {
+            text-decoration: none;
+            border: 1px solid #000000;
+            margin-right: 5px;
+        }
+        .page-item.number:hover {
+            color: black;
+            background-color: #cccccc;
+        }
+        .page-item.number.active {
+            color: black !important;
+            background-color: #cccccc !important;
+        }
+    </style>
+</head>
+<body>
+
+<a href="/blog" class="btn btn-secondary mb-3 mt-3">Quay lại trang chủ</a>
+<a href="/category" class="btn btn-secondary mb-3 mt-3">Tất cả danh mục</a>
+
+<div class="nav-item dropdown mb-4">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        Danh mục
+    </a>
+    <div class="dropdown-menu" >
+        <a th:each="category : ${categories}" class="dropdown-item"
+           th:href="@{/category(name = ${category.name})}"
+           th:text="${category.name}">
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên thể loại</th>
+        <th>List blog</th>
+        <th>Điều chỉnh</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category, iterStat : ${categoryList}">
+        <td th:text="${iterStat.count}"></td>
+        <td><a th:href="@{/category/detail?id=__*{category.id}__}" th:text="${category.name}"></a></td>
+        <td>
+            <th:block th:each="blogName : ${category.blogSet}">
+                <div th:if="${blogName.title == null}">
+                    <span></span>
+                </div>
+                <div th:if="${blogName.title != null}">
+                    <span th:text="${blogName.title}"></span>
+                </div>
+            </th:block>
+        </td>
+
+        <td><a th:href="@{/category/edit?id=__${category.id}__}" class="btn btn-primary">Edit</a></td>
+        <td>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modelId"
+                    th:attr="onclick=|getBlogInfo('${category.id}', '${category.name}')|">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="text-center">
+    <a class="page-item btn btn-dark"
+       th:if="${categoryList.hasPrevious()}"
+       th:href="@{/category(page = ${categoryList.number - 1})}">
+        <i class="ti-angle-left"></i>
+    </a>
+    <a class="page-item btn btn-dark number" th:classappend="${pageNumber == categoryList.number + 1} ? 'active' : ''"
+       th:each="pageNumber : ${pageNumberist}"
+       th:text="${pageNumber}"
+       th:href="@{/category(page = ${pageNumber - 1})}">
+    </a>
+    <a class="page-item btn btn-dark"
+       th:if="${categoryList.hasNext()}"
+       th:href="@{/category(page = ${categoryList.number + 1})}">
+        <i class="ti-angle-right"></i>
+    </a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Xóa sản phẩm </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/blog/delete">
+                <div class="modal-body">
+                    <input type="hidden" name="deleteId" id="deleteId">
+                    <span>Bạn có chắc muốn xóa </span> <span id="deleteName"></span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function getBlogInfo (id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
