@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<p>
+  <a href="/product">Shop</a>
+</p>
+<h1>Your Cart</h1>
+<form th:action="@{/product}" th:object="${cart}" method="post">
+  <h3>Giỏ hàng: <span th:text="${cart.countItemQuantity()}"></span></h3>
+  <h3>Tổng sản phẩm: <span th:text="${cart.countProductQuantity()}"></span></h3>
+  <table class="table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Sản phẩm</th>
+      <th scope="col" class="ps-3">Mô tả</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="productDTO: ${cart.productMap}">
+      <td scope="row"><img th:src="${productDTO.key.imgURL}" alt="" height="140px"></td>
+      <td class="ps-3">
+        <p th:text="${productDTO.key.name}"></p>
+        <p>Đơn giá: <span th:text="${#numbers.formatCurrency(productDTO.key.price)}"></span></p>
+        <p>Số lượng
+          <a class="btn btn-primary" id="increase_button"
+             th:href="@{/product/add(id = ${productDTO.getKey().id}, action='show')}"
+             th:text="${'+'}" style="text-decoration: none">
+          </a>
+          <span th:text="${productDTO.value}"></span>
+          <a class="btn btn-primary" id="decrease_button"
+             th:href="@{/product/decrease(id = ${productDTO.getKey().id}, action='show1')}"
+             th:text="${'-'}" style="text-decoration: none">
+          </a>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Tổng cộng: <span th:text="${#numbers.formatCurrency(cart.countTotalPayment())}"></span></td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<script th:inline="javascript">
+  const numberFormat = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
