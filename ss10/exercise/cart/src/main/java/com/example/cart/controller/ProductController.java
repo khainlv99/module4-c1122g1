@@ -63,7 +63,7 @@ public class ProductController {
         if (productDTO == null) {
             return "/error.404";
         }
-        if (action.equals("show1")) {
+        if (action.equals("show")) {
             cart.removeProduct(productDTO);
             return "redirect:/shopping-cart";
         }
