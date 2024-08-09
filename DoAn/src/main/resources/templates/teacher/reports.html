@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Reports</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid p-5 mt-5">
+    <div class="row">
+      <!-- Report Summary -->
+      <div class="col-md-12">
+        <div class="card card-sh">
+          <div class="card-header text-center fs-4">Báo cáo</div>
+          <div class="card-body">
+            <!-- Example: Displaying a summary of grades -->
+            <h5 class="mb-4">Tóm tắt lớp</h5>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Grade</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="grade : ${grades}">
+                <td th:text="${grade.id}">ID</td>
+                <td th:text="${grade.student.name}">Student Name</td>
+                <td th:text="${grade.subject.name}">Subject Name</td>
+                <td th:text="${grade.grade}">Grade</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <!-- Example: Displaying a summary of subjects -->
+            <h5 class="mt-5">Danh sách môn học</h5>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Subject Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.id}">ID</td>
+                <td th:text="${subject.name}">Subject Name</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

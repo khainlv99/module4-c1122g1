@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher - Grades</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid p-5 mt-5">
+    <div class="row">
+      <!-- Add Grade Form -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header text-center">
+            <p class="fs-4">Add Grade</p>
+          </div>
+          <div class="card-body">
+            <form action="#" th:action="@{/teacher/grades/add}" method="post">
+              <div class="mb-3">
+                <label for="student">Student:</label>
+                <select id="student" name="studentId" class="form-control" required>
+                  <option value="" selected disabled>Select Student</option>
+                  <option th:each="student : ${students}"
+                          th:value="${student.id}"
+                          th:text="${student.name}"></option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subjectId" class="form-control" required>
+                  <option value="" selected disabled>Select Subject</option>
+                  <option th:each="subject : ${subjects}"
+                          th:value="${subject.id}"
+                          th:text="${subject.name}"></option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="grade">Grade:</label>
+                <input type="number" id="grade" name="grade" class="form-control" step="0.01" min="0" max="10" placeholder="Grade" required>
+              </div>
+              <button type="submit" class="btn btn-primary col-md-12">Add Grade</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grades Table -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header text-center fs-4">Grades List</div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="grade : ${grades}">
+                <td th:text="${grade.id}"></td>
+                <td th:text="${grade.student != null ? grade.student.name : 'Unknown'}"></td>
+                <td th:text="${grade.subject != null ? grade.subject.name : 'Unknown'}"></td>
+                <td th:text="${grade.grade}"></td>
+                <td>
+                  <a th:href="@{/teacher/grades/edit/{id}(id=${grade.id})}" class="btn btn-sm btn-primary">Update</a>
+                  <a th:href="@{/teacher/grades/delete/{id}(id=${grade.id})}" class="btn btn-danger btn-sm">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

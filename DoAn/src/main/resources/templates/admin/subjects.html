@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Môn học</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid p-5 mt-5">
+    <div class="row">
+      <!-- Add Subject Form -->
+      <div class="col-md-4">
+        <div class="card card-sh">
+          <div class="card-header text-center">
+            <p class="fs-4">Thêm môn học</p>
+
+            <th:block th:if="${session.succMsg}">
+              <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+
+            <th:block th:if="${session.errorMsg}">
+              <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+          </div>
+          <div class="card-body">
+            <form action="#" th:action="@{/admin/subjects/add}" method="post">
+              <div class="mb-3">
+                <label for="name">Tên môn học:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Subject Name" required/>
+              </div>
+              <button type="submit" class="btn btn-primary col-md-12">Thêm môn học</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- List Subjects -->
+      <div class="col-md-8">
+        <div class="card card-sh">
+          <div class="card-header text-center fs-4">Danh sách môn học</div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Tác vụ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="subject, iter : ${subjects}">
+                <th scope="row" th:text="${subject.id}">ID</th>
+                <td th:text="${subject.name}">Subject Name</td>
+                <td>
+                  <a th:href="@{/admin/subjects/edit/{id}(id=${subject.id})}" class="btn btn-sm btn-primary">
+                    <i class="fa-solid fa-pen-to-square"></i> Cập nhật
+                  </a>
+                  <a th:href="@{/admin/subjects/delete/{id}(id=${subject.id})}" class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i> Xóa
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

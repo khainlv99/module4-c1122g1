@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- Start Navbar  -->
+<nav class="navbar navbar-expand-lg bg-black fixed-top navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i
+                class="fa-solid fa-cart-shopping"></i> Trường <span style="color: red">Học</span></a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active"
+                                        aria-current="page" href="/"><i class="fa-solid fa-house"></i>
+                    Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link active"
+                                        aria-current="page" href="/products">Về chúng tôi</a></li>
+
+                <li class="nav-item dropdown"><a
+                        class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="color: white">Lớp học</a>
+                    <ul class="dropdown-menu">
+                        <li th:each="c:${categorys}"><a class="dropdown-item"
+                                                        th:href="@{'/products?category='+${c.name}}">[[${c.name}]]</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <th:block th:if="${user == null}">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/signin">
+                            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/register">Đăng ký</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Quản trị</a>
+                    </li>
+                </th:block>
+
+                <th:block th:if="${user != null}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> [[${user.name}]]
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                            <th:block th:if="${user.role == 'ROLE_USER'}">
+                                <li><a class="dropdown-item" href="/user/user-orders">Xem lịch học</a></li>
+                            </th:block>
+                            <th:block th:if="${user.role == 'ROLE_ADMIN'}">
+                                <li><a class="dropdown-item" href="/admin/dashboard">Bảng điều khiển</a></li>
+                            </th:block>
+                            <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+                </th:block>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+
+<div th:replace="${content}"></div>
+
+<!-- Start Footer -->
+
+
+<footer class="bg-dark text-center text-lg-start text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Grid row -->
+        <div class="row mt-4">
+            <!-- Grid column -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Thông tin học tập</h5>
+
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>Chương trình học</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-calendar-alt fa-fw fa-sm me-2"></i>Lịch học</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-graduation-cap fa-fw fa-sm me-2"></i>Các khóa học</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-chalkboard-teacher fa-fw fa-sm me-2"></i>Giáo viên</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Thông tin liên hệ</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-phone fa-fw fa-sm me-2"></i>Điện thoại</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Email</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-map-marker-alt fa-fw fa-sm me-2"></i>Địa chỉ</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-clock fa-fw fa-sm me-2"></i>Giờ làm việc</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Chính sách</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-gavel fa-fw fa-sm me-2"></i>Điều khoản sử dụng</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-shield-alt fa-fw fa-sm me-2"></i>Chính sách bảo mật</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-users-cog fa-fw fa-sm me-2"></i>Quản lý tài khoản</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Liên hệ</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Hỗ trợ học sinh</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-comments fa-fw fa-sm me-2"></i>Hỗ trợ phụ huynh</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white"><i class="fas fa-calendar-check fa-fw fa-sm me-2"></i>Đăng ký tư vấn</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2024 Bản quyền:
+        <a class="text-white" href="https://example.com/">SchoolManager.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+
+<!-- End Footer  -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

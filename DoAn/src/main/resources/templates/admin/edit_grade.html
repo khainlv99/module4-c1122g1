@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cập nhật điểm</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid p-5 mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <p class="fs-4">Cập nhật điểm</p>
+          </div>
+          <div class="card-body">
+            <form th:action="@{/admin/grades/update}" method="post">
+            <input type="hidden" name="id" th:value="${grade.id}"/>
+            <div class="mb-3">
+              <label for="editStudent" class="form-label">Student:</label>
+              <select id="editStudent" name="studentId" class="form-control" required>
+                <option th:each="student : ${students}"
+                        th:value="${student.id}"
+                        th:text="${student.name}"
+                        th:selected="${student.id == grade.student.id}"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editSubject" class="form-label">Môn học:</label>
+              <select id="editSubject" name="subjectId" class="form-control" required>
+                <option th:each="subject : ${subjects}"
+                        th:value="${subject.id}"
+                        th:text="${subject.name}"
+                        th:selected="${subject.id == grade.subject.id}"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editGrade" class="form-label">Điểm:</label>
+              <input type="number" id="editGrade" name="grade" class="form-control" step="0.01" min="0" max="10"
+                     th:value="${grade.grade}" placeholder="Grade" required>
+            </div>
+            <button type="submit" class="btn btn-primary col-md-12">Thêm điểm</button>
+            </form>
+            <a href="#" th:href="@{/admin/grades}">Trở về</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

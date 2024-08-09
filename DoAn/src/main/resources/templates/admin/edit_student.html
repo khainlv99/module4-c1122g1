@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container p-5 mt-3">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header text-center">
+            <p class="fs-4">Edit Student</p>
+          </div>
+          <div class="card-body">
+            <form action="#" th:action="@{/admin/students/update}" method="post">
+              <!-- Student ID (hidden) -->
+              <input type="hidden" name="id" th:value="${student.id}"/>
+
+              <div class="mb-3">
+                <label for="name" class="form-label">Tên:</label>
+                <input type="text" id="name" name="name" class="form-control" th:value="${student.name}" placeholder="Tên sinh viên" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="age" class="form-label">Tuổi:</label>
+                <input type="number" id="age" name="age" class="form-control" th:value="${student.age}" placeholder="Tuổi" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Quê quán:</label>
+                <input type="text" id="address" name="address" class="form-control" th:value="${student.address}" placeholder="Quê quán" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Số điện thoại:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" th:value="${student.phoneNumber}" placeholder="Số điện thoại" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" th:value="${student.email}" placeholder="Email" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="subjects" class="form-label">Môn học:</label>
+                <select id="subjects" name="subjects" class="form-control" multiple>
+                  <option th:each="subject : ${subjects}"
+                          th:value="${subject.id}"
+                          th:selected="${student.subjects.contains(subject)}"
+                          th:text="${subject.name}">Tên môn học</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Update Student</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

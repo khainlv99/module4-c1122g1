@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <!-- Add your CSS and font links here -->
+  <link rel="stylesheet" href="path/to/your/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<section>
+  <div class="container p-5">
+    <p class="text-center fs-3 mt-4">Teacher Dashboard</p>
+    <div class="row p-5">
+      <div class="col-md-4 mt-2">
+        <a href="/teacher/grades" class="text-decoration-none">
+          <div class="card card-sh">
+            <div class="card-body text-center text-primary">
+              <i class="fa-solid fa-graduation-cap fa-3x"></i>
+              <h4>Quản lí sinh viên</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mt-2">
+        <a href="/teacher/courses" class="text-decoration-none">
+          <div class="card card-sh">
+            <div class="card-body text-center text-warning">
+              <i class="fa-solid fa-book fa-3x"></i>
+              <h4>Quản lý môn học</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mt-2">
+        <a href="/teacher/students" class="text-decoration-none">
+          <div class="card card-sh">
+            <div class="card-body text-center text-success">
+              <i class="fa-solid fa-users fa-3x"></i>
+              <h4>Quản lý học viên</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <a href="/teacher/profile" class="text-decoration-none">
+          <div class="card card-sh">
+            <div class="card-body text-center text-info">
+              <i class="fa-solid fa-user fa-3x"></i>
+              <h4>Thông tin</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <a href="/teacher/reports" class="text-decoration-none">
+          <div class="card card-sh">
+            <div class="card-body text-center text-secondary">
+              <i class="fa-solid fa-cogs fa-3x"></i>
+              <h4>Report</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

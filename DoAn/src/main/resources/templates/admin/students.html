@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Students</title>
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid mt-5 p-5">
+    <div class="card card-sh">
+      <div class="card-header text-center">
+        <p class="fs-4">Danh sách sinh viên</p>
+        <!-- Success message -->
+        <th:block th:if="${session.succMsg}">
+          <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+          <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+        </th:block>
+        <!-- Error message -->
+        <th:block th:if="${session.errorMsg}">
+          <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+          <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+        </th:block>
+      </div>
+      <div class="card-body">
+        <div class="justify-content-between mb-3">
+          <a href="/admin/students/add" class="btn btn-primary">Thêm mới sinh viên</a>
+          <!-- Search Form -->
+          <form action="#" th:action="@{/admin/students/search}" method="get" class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm theo tên" aria-label="Search" name="name" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+          </form>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tuổi</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Môn học</th>
+            <th scope="col">Tác vụ</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="student : ${students}">
+            <td th:text="${student.id}">ID</td>
+            <td th:text="${student.name}">Tên</td>
+            <td th:text="${student.email}">Email</td>
+            <td th:text="${student.age}">Tuổi</td>
+            <td th:text="${student.address}">Địa chỉ</td>
+            <td th:text="${student.phoneNumber}">Số điện thoaị</td>
+            <td th:each="subject : ${student.subjects}" th:text="${subject.name}">Môn học
+            </td>
+            <td>
+              <a th:href="@{/admin/students/edit/{id}(id=${student.id})}" class="btn btn-sm btn-primary">Cập nhật</a>
+              <a th:href="@{/admin/students/delete/{id}(id=${student.id})}" class="btn btn-sm btn-danger">Xóa</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Link to Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

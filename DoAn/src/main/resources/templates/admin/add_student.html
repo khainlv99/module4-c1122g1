@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm Sinh Viên</title>
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container p-5 mt-3">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header text-center">
+            <p class="fs-4">Thêm Sinh Viên</p>
+            <!-- Success message -->
+            <th:block th:if="${session.succMsg}">
+              <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+            <!-- Error message -->
+            <th:block th:if="${session.errorMsg}">
+              <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+          </div>
+          <div class="card-body">
+            <form action="#" th:action="@{/admin/students/add}" method="post">
+              <div class="mb-3">
+                <label for="name" class="form-label">Tên sinh viên:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Tên sinh viên" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="age" class="form-label">Tuổi:</label>
+                <input type="number" id="age" name="age" class="form-control" placeholder="Tuổi" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Quê quán:</label>
+                <input type="text" id="address" name="address" class="form-control" placeholder="Quê quán" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Số điện thoại:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Số điện thoại" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required/>
+              </div>
+
+              <div class="mb-3">
+                <label for="subjects" class="form-label">Môn học:</label>
+                <select id="subjects" name="subjects" class="form-control" multiple>
+                  <option th:each="subject : ${subjects}"
+                          th:value="${subject.id}"
+                          th:text="${subject.name}">Tên môn học</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Thêm mới sinh viên</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Link to Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

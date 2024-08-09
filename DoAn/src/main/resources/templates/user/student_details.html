@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Student Details</h1>
+  <div class="card">
+    <div class="card-header">
+      <h3 th:text="${student.name}">Student Name</h3>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9" th:text="${student.id}">Student ID</dd>
+
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9" th:text="${student.name}">Student Name</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9" th:text="${student.email}">Student Email</dd>
+
+        <dt class="col-sm-3">Phone</dt>
+        <dd class="col-sm-9" th:text="${student.phone}">Student Phone</dd>
+
+        <dt class="col-sm-3">Enrolled Subjects</dt>
+        <dd class="col-sm-9">
+          <ul>
+            <li th:each="subject : ${student.subjects}" th:text="${subject.name}">Subject Name</li>
+          </ul>
+        </dd>
+      </dl>
+      <a href="#" class="btn btn-primary">Back to List</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

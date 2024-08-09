@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<!-- Thêm các liên kết đến các tệp CSS và font nếu cần -->
+	<link rel="stylesheet" href="path/to/your/styles.css">
+</head>
+<body>
+<section>
+	<div class="container p-5">
+		<p class="text-center fs-3 mt-4">Trang quản trị</p>
+		<div class="row p-5">
+			<div class="col-md-4 mt-2">
+				<a href="/admin/students/add" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-primary">
+							<i class="fa-solid fa-square-plus fa-3x"></i>
+							<h4>Thêm môn học</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-2">
+				<a href="/admin/subjects" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-warning">
+							<i class="fa-solid fa-list fa-3x"></i>
+							<h4>Môn học</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-2">
+				<a href="/admin/students" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-success">
+							<i class="fa-solid fa-table-list fa-3x"></i>
+							<h4>Danh sách sinh viên</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/grades" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-warning">
+							<i class="fa-solid fa-box-open fa-3x"></i>
+							<h4>Điểm</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="/admin/users" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-primary">
+							<i class="fa-solid fa-circle-user fa-3x"></i>
+							<h4>Khách hàng</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-4 mt-4">
+				<a href="#" class="text-decoration-none">
+					<div class="card card-sh">
+						<div class="card-body text-center text-primary">
+							<i class="fa-solid fa-user-plus fa-3x"></i>
+							<h4>Thêm quản trị viên</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+		</div>
+	</div>
+</section>
+</body>
+</html>

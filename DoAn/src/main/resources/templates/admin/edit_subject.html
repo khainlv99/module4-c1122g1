@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <title>Cập nhật môn học</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section>
+  <div class="container-fluid p-5 mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card card-sh">
+          <div class="card-header text-center">
+            <p class="fs-4">Cập nhật môn học</p>
+
+            <th:block th:if="${session.succMsg}">
+              <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+
+            <th:block th:if="${session.errorMsg}">
+              <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+              <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+          </div>
+          <div class="card-body">
+            <form action="#" th:action="@{/admin/subjects/update}" method="post">
+              <input type="hidden" th:value="${subject.id}" name="id"/>
+              <div class="mb-3">
+                <label for="name">Tên môn học:</label>
+                <input type="text" id="name" name="name" th:value="${subject.name}" class="form-control" required/>
+              </div>
+              <button type="submit" class="btn btn-primary col-md-12">Cập nhật</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
